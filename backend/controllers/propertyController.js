@@ -10,6 +10,16 @@ const getProperties = asyncHandler(async (req, res) =>
     res.status(200).json(properties)
 })
 
+
+const getSingleProperty = asyncHandler(async (req, res) =>
+{
+    const property = await Property.findById(req.params.id)
+
+
+    res.status(200).json(property)
+})
+
+
 const setProperty = asyncHandler(async (req, res) => 
 {   
     /*if(!req.body.name)
@@ -77,5 +87,5 @@ const deleteProperty = asyncHandler(async (req, res) =>
 
 module.exports =
 {
-    getProperties, setProperty, updateProperty, deleteProperty
+    getProperties, setProperty, updateProperty, deleteProperty, getSingleProperty
 }

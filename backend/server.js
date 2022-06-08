@@ -23,7 +23,8 @@ app.use(express.urlencoded({extended: false}))
 app.use('/search', require('./routes/searchRoutes'))
 app.use('/api/properties', require('./routes/propertyRoutes'))
 app.use('/api/users', require('./routes/userRoutes'))
-
+app.use('/', require('./routes/propertyRoutes'))
+app.use('/api/property', require('./routes/propertyRoutes'))
 app.use(errorHandler)
 
 app.listen(port, () => console.log(`Server started on port ${port}`))

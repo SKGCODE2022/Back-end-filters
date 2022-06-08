@@ -32,18 +32,18 @@ const setProperty = asyncHandler(async (req, res) =>
         price: req.body.price, 
         rentFrequency: req.body.rentFrequency, 
         rooms : req.body.rooms, 
-        title: req.body.title, 
+        // title: req.body.title, 
         baths: req.body.baths, 
         area: req.body.area, 
-        agency: req.body.agency, 
-        isVerified: req.body.isVerified,
-        description: req.body.description,
-        type: req.body.type,
+        // agency: req.body.agency, 
+        // isVerified: req.body.isVerified,
+        // description: req.body.description,
+        // type: req.body.type,
         purpose: req.body.purpose,
-        furnishingStatus: req.body.furnishingStatus,
-        amenities: req.body.amenities,
-        photos: req.body.photos,
-        city: req.body.city
+        // furnishingStatus: req.body.furnishingStatus,
+        // amenities: req.body.amenities,
+        // photos: req.body.photos,
+        locationExternalIDs: req.body.locationExternalIDs
 
 
 

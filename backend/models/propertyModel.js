@@ -17,20 +17,20 @@ const propertiesSchema = mongoose.Schema
         price: 
         {
             type: Number,
-            required: [true, 'Please add a name value']
+            required: [true, 'Please add a price']
         },
         
         rentFrequency:
         {
             type: String,
-            required: [true, 'Please add a city value']
+            required: [true, 'Please add rent frequency']
         },
 
-        title:
-        {
-            type: String,
-            required: [true, 'Please add a property type value (Rental/For sale)']
-        },
+        // title:
+        // {
+        //     type: String,
+        //     required: [true, 'Please add a title']
+        // },
 
         rooms:
         {
@@ -41,7 +41,7 @@ const propertiesSchema = mongoose.Schema
         baths:
         {
             type: Number,
-            required: [true, 'Please add a price']
+            required: [true, 'Please add a bath number']
         },
         
         area:
@@ -49,47 +49,47 @@ const propertiesSchema = mongoose.Schema
             type: Number,
             required: [true, 'Please add a price']
         },
-        agency:
-        {
-            type: String,
-            required: [false, 'Please add a price']
-        },
-        isVerified:
-        {
-            type: Boolean,
-            required: [false, 'Please add a price']
-        },        
-        description:
-        {
-            type: String,
-            required: [false, 'Please add a price']
-        },        
-        type:
-        {
-            type: String,
-            required: [false, 'Please add a price']
-        },
+        // agency:
+        // {
+        //     type: String,
+        //     required: [false, 'Please add a price']
+        // },
+        // isVerified:
+        // {
+        //     type: Boolean,
+        //     required: [false, 'Please add a price']
+        // },        
+        // description:
+        // {
+        //     type: String,
+        //     required: [false, 'Please add a price']
+        // },        
+        // type:
+        // {
+        //     type: String,
+        //     required: [false, 'Please add a property type value (for-rent/for-sale)']
+        // },
         purpose:
         {
             type: String,
-            required: [false, 'Please add a price']
+            required: [true, 'Please add a purpose']
         },
-        furnishingStatus:
-        {
-            type: String,
-            required: [false, 'Please add a price']
-        },
-        amenities:
-        {
-            type: String,
-            required: [false, 'Please add a price']
-        },
-        photos:
-        {
-            type: String,
-            required: [false, 'Please add a price']
-        },     
-        city:
+        // furnishingStatus:
+        // {
+        //     type: String,
+        //     required: [false, 'Please add a furnishing status']
+        // },
+        // amenities:
+        // {
+        //     type: String,
+        //     required: [false, 'Please add amenities']
+        // },
+        // photos:
+        // {
+        //     type: String,
+        //     required: [false, 'Please add a photo']
+        // },     
+        locationExternalIDs:
         {
             type: String,
             required: [true, 'Please add a city']
@@ -101,4 +101,4 @@ const propertiesSchema = mongoose.Schema
     }
 )
 
-module.exports = mongoose.model('Property', propertiesSchema, "Test")
+module.exports = mongoose.model('Property', propertiesSchema, "Test2")

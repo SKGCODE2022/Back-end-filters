@@ -24,19 +24,19 @@ const getSearch = asyncHandler(async (req, res) =>
         }
 
 
-    if(req.query.maxRooms)
+    if(req.query.roomsMax)
     { 
-        if(req.query.minRooms)
+        if(req.query.roomsMin)
         {
-            roomQuery = {rooms: {$lte: req.query.maxRooms} && {$gte: req.query.minRooms}}
+            roomQuery = {rooms: {$lte: req.query.roomsMax} && {$gte: req.query.roomsMin}}
         }    
-        else {roomQuery = {rooms: {$lte: req.query.maxRooms}}}
+        else {roomQuery = {rooms: {$lte: req.query.roomsMax}}}
     }
         else
         {
-            if(req.query.minRooms)
+            if(req.query.roomsMin)
             {
-                roomQuery = {rooms: {$gte: req.query.minRooms}}
+                roomQuery = {rooms: {$gte: req.query.roomsMin}}
             }  
             else {roomQuery = null}
         }
@@ -59,8 +59,45 @@ const getSearch = asyncHandler(async (req, res) =>
             else {areaQuery = null}
         }
 
+        
+    if(req.query.bathsMax)
+    { 
+        if(req.query.bathsMin)
+        {
+            bathQuery = {baths: {$lte: req.query.bathsMax} && {$gte: req.query.bathsMin}}
+        }    
+        else {bathQuery = {baths: {$lte: req.query.bathsMax}}}
+    }
+        else
+        {
+            if(req.query.bathsMin)
+            {
+                bathQuery = {baths: {$gte: req.query.bathsMin}}
+            }  
+            else {bathQuery = null}
+        }
+        // if(req.query.sort)
+        // { 
+        //     if(req.query.bathsMin)
+        //     {
+        //         bathQuery = {baths: {$lte: req.query.bathsMax} && {$gte: req.query.bathsMin}}
+        //     }    
+        //     else {bathQuery = {baths: {$lte: req.query.bathsMax}}}
+        // }
+        //     else
+        //     {
+        //         if(req.query.bathsMin)
+        //         {
+        //             bathQuery = {baths: {$gte: req.query.bathsMin}}
+        //         }  
+        //         else {bathQuery = null}
+        //     }
+    
+    
 
-    const property =await Property.find(req.query).find(roomQuery).find(priceQuery).find(areaQuery)
+
+
+    const property =await Property.find(req.query).find(roomQuery).find(priceQuery).find(areaQuery).find(bathQuery).sort(req.query.sort)
     res.status(200).json(property)
 
 

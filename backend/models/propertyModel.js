@@ -94,6 +94,11 @@ const propertiesSchema = mongoose.Schema
             type: String,
             required: [true, 'Please add a title)']
         }, 
+        coverPhoto:
+        {
+            type: String,
+            required: [false, 'Please add a photo url)']
+        },
 
     },
     {
@@ -101,4 +106,4 @@ const propertiesSchema = mongoose.Schema
     }
 )
 
-module.exports = mongoose.model('Property', propertiesSchema, "Test")
+module.exports = mongoose.model('Property', propertiesSchema, "REDB")

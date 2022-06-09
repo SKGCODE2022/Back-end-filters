@@ -26,12 +26,6 @@ const propertiesSchema = mongoose.Schema
             required: [true, 'Please add rent frequency']
         },
 
-        // title:
-        // {
-        //     type: String,
-        //     required: [true, 'Please add a title']
-        // },
-
         rooms:
         {
             type: Number,
@@ -49,50 +43,56 @@ const propertiesSchema = mongoose.Schema
             type: Number,
             required: [true, 'Please add a price']
         },
-        // agency:
-        // {
-        //     type: String,
-        //     required: [false, 'Please add a price']
-        // },
-        // isVerified:
-        // {
-        //     type: Boolean,
-        //     required: [false, 'Please add a price']
-        // },        
-        // description:
-        // {
-        //     type: String,
-        //     required: [false, 'Please add a price']
-        // },        
-        // type:
-        // {
-        //     type: String,
-        //     required: [false, 'Please add a property type value (for-rent/for-sale)']
-        // },
+       
         purpose:
         {
             type: String,
             required: [true, 'Please add a purpose']
         },
-        // furnishingStatus:
-        // {
-        //     type: String,
-        //     required: [false, 'Please add a furnishing status']
-        // },
-        // amenities:
-        // {
-        //     type: String,
-        //     required: [false, 'Please add amenities']
-        // },
-        // photos:
-        // {
-        //     type: String,
-        //     required: [false, 'Please add a photo']
-        // },     
         locationExternalIDs:
         {
             type: String,
             required: [true, 'Please add a city']
+        }, 
+        year:
+        {
+            type: Number,
+            required: [true, 'Please add a year']
+        },
+        level:
+        {
+            type: Number,
+            required: [true, 'Please add the property floor']
+        },
+        kitchens:
+        {
+            type: Number,
+            required: [true, 'Please add a kitchen number']
+        },  
+         livingRooms:
+        {
+            type: Number,
+            required: [true, 'Please add a living room number']
+        },
+        heat:
+        {
+            type: String,
+            required: [true, 'Please add a heating method']
+        },        
+        energyClass:
+        {
+            type: String,
+            required: [true, 'Please add an energy class']
+        },        
+        description:
+        {
+            type: String,
+            required: [true, 'Please add a description)']
+        },   
+        title:
+        {
+            type: String,
+            required: [true, 'Please add a title)']
         }, 
 
     },
@@ -101,4 +101,4 @@ const propertiesSchema = mongoose.Schema
     }
 )
 
-module.exports = mongoose.model('Property', propertiesSchema, "Test2")
+module.exports = mongoose.model('Property', propertiesSchema, "Test")

@@ -76,28 +76,28 @@ const getSearch = asyncHandler(async (req, res) =>
             }  
             else {bathQuery = null}
         }
-        // if(req.query.sort)
-        // { 
-        //     if(req.query.bathsMin)
-        //     {
-        //         bathQuery = {baths: {$lte: req.query.bathsMax} && {$gte: req.query.bathsMin}}
-        //     }    
-        //     else {bathQuery = {baths: {$lte: req.query.bathsMax}}}
-        // }
-        //     else
-        //     {
-        //         if(req.query.bathsMin)
-        //         {
-        //             bathQuery = {baths: {$gte: req.query.bathsMin}}
-        //         }  
-        //         else {bathQuery = null}
-        //     }
-    
-    
 
+    if(req.query.sort == "price-asc")
+        {
+           sortQuery = {price: 1}
+            console.log(req.query.sort)
+        }
+        else if(req.query.sort == "price-des")
+        {
+            sortQuery = {price: -1}
+        }
+        else if(req.query.sort == "date-asc")
+        {
+            sortQuery = {updatedAt: 1}
+        }
+        else if(req.query.sort == "date-desc")
+        {
+            sortQuery = {updatedAt: -1}
+        }
+        else if(!req.query.sort){sortQuery = null}
+        
 
-
-    const property =await Property.find(req.query).find(roomQuery).find(priceQuery).find(areaQuery).find(bathQuery).sort(req.query.sort)
+    const property =await Property.find(req.query).find(roomQuery).find(priceQuery).find(areaQuery).find(bathQuery).sort(sortQuery);
     res.status(200).json(property)
 
 

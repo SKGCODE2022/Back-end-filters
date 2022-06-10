@@ -5,99 +5,81 @@ const Property = require('../models/propertyModel')
 const getSearch = asyncHandler(async (req, res) => 
 {   
 
-
+// price filters
     if(req.query.maxPrice)
     { 
-        if(req.query.minPrice)
-        {
-            priceQuery = {price: {$lte: req.query.maxPrice} && {$gte: req.query.minPrice}}
-        }    
-        else {priceQuery = {price: {$lte: req.query.maxPrice}}}
+        priceQueryMax = {price: {$lte: req.query.maxPrice}}
     }
-        else
-        {
-            if(req.query.minPrice)
-            {
-                priceQuery = {price: {$gte: req.query.minPrice}}
-            }  
-            else {priceQuery = null}
-        }
+    else {priceQueryMax = null}
+
+    if(req.query.minPrice)
+    {
+        priceQueryMin = {price: {$gte: req.query.minPrice}}
+    }  
+    else {priceQueryMin = null}   
 
 
+//room filters
     if(req.query.roomsMax)
     { 
-        if(req.query.roomsMin)
-        {
-            roomQuery = {rooms: {$lte: req.query.roomsMax} && {$gte: req.query.roomsMin}}
-        }    
-        else {roomQuery = {rooms: {$lte: req.query.roomsMax}}}
+        roomQueryMax = {room: {$lte: req.query.roomsMax}}
     }
-        else
-        {
-            if(req.query.roomsMin)
-            {
-                roomQuery = {rooms: {$gte: req.query.roomsMin}}
-            }  
-            else {roomQuery = null}
-        }
+    else {roomQueryMax = null}
 
-    
+    if(req.query.roomsMin)
+    {
+        roomQueryMin = {room: {$gte: req.query.roomsMin}}
+    }  
+    else {roomQueryMin = null}   
+
+
+//area filters
     if(req.query.areaMax)
     { 
-        if(req.query.areaMin)
-        {
-            areaQuery = {area: {$lte: req.query.areaMax} && {$gte: req.query.areaMin}}
-        }    
-        else {areaQuery = {area: {$lte: req.query.areaMax}}}
+        areaQueryMax = {area: {$lte: req.query.areaMax}}
     }
-        else
-        {
-            if(req.query.areaMin)
-            {
-                areaQuery = {area: {$gte: req.query.areaMin}}
-            }  
-            else {areaQuery = null}
-        }
+    else {areaQueryMax = null}
 
-        
-    if(req.query.bathsMax)
-    { 
-        if(req.query.bathsMin)
-        {
-            bathQuery = {baths: {$lte: req.query.bathsMax} && {$gte: req.query.bathsMin}}
-        }    
-        else {bathQuery = {baths: {$lte: req.query.bathsMax}}}
+    if(req.query.areaMin)
+    {
+        areaQueryMin = {area: {$gte: req.query.areaMin}}
+    }  
+    else {areaQueryMin = null}
+
+ //bath filters
+ if(req.query.bathsMax)
+ { 
+     bathQueryMax = {baths: {$lte: req.query.bathsMax}}
+ }
+ else {bathQueryMax = null}
+
+ if(req.query.bathsMin)
+ {
+     bathQueryMin = {baths: {$gte: req.query.bathsMin}}
+ }  
+ else {bathQueryMin = null}     
+
+
+if(req.query.sort == "price-asc")
+    {
+        sortQuery = {price: 1}
     }
-        else
-        {
-            if(req.query.bathsMin)
-            {
-                bathQuery = {baths: {$gte: req.query.bathsMin}}
-            }  
-            else {bathQuery = null}
-        }
-
-    if(req.query.sort == "price-asc")
-        {
-           sortQuery = {price: 1}
-            console.log(req.query.sort)
-        }
-        else if(req.query.sort == "price-des")
-        {
-            sortQuery = {price: -1}
-        }
-        else if(req.query.sort == "date-asc")
-        {
-            sortQuery = {updatedAt: 1}
-        }
-        else if(req.query.sort == "date-desc")
-        {
-            sortQuery = {updatedAt: -1}
-        }
-        else if(!req.query.sort){sortQuery = null}
+    else if(req.query.sort == "price-des")
+    {
+        sortQuery = {price: -1}
+    }
+    else if(req.query.sort == "date-asc")
+    {
+        sortQuery = {updatedAt: 1}
+    }
+    else if(req.query.sort == "date-desc")
+    {
+        sortQuery = {updatedAt: -1}
+    }
+    else if(!req.query.sort){sortQuery = null}
         
 
-    const property =await Property.find(req.query).find(roomQuery).find(priceQuery).find(areaQuery).find(bathQuery).sort(sortQuery);
+    const property =await Property.find(req.query).find(roomQueryMin).find(roomQueryMax).find(priceQueryMax).find(priceQueryMin).find(areaQueryMin).find(areaQueryMax).find(bathQueryMin).find(bathQueryMax).sort(sortQuery);
     res.status(200).json(property)
 
 

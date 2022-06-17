@@ -58,6 +58,32 @@ const getSearch = asyncHandler(async (req, res) =>
      bathQueryMin = {baths: {$gte: req.query.bathsMin}}
  }  
  else {bathQueryMin = null}  
+
+  //year filters
+  if(req.query.yearMax)
+  { 
+      yearQueryMax = {year: {$lte: req.query.yearMax}}
+  }
+  else {yearQueryMax = null}
+ 
+  if(req.query.yearMin)
+  {
+      yearQueryMin = {year: {$gte: req.query.yearMin}}
+  }  
+  else {yearQueryMin = null}
+
+//level filters
+  if(req.query.levelMax)
+  { 
+      levelQueryMax = {level: {$lte: req.query.levelMax}}
+  }
+  else {levelQueryMax = null}
+ 
+  if(req.query.levelMin)
+  {
+    levelQueryMin = {level: {$gte: req.query.levelMin}}
+  }  
+  else {levelQueryMin = null}
  
 //   //purpose filters
 //   if(req.query.purpose)
@@ -88,7 +114,7 @@ if(req.query.sort == "price-asc")
     else if(!req.query.sort){sortQuery = null}
         
 
-    const property =await Property.find(req.query).find(roomQueryMin).find(roomQueryMax).find(priceQueryMax).find(priceQueryMin).find(areaQueryMin).find(areaQueryMax).find(bathQueryMin).find(bathQueryMax).sort(sortQuery);
+    const property =await Property.find(req.query).find(roomQueryMin).find(roomQueryMax).find(levelQueryMin).find(levelQueryMax).find(yearQueryMin).find(yearQueryMax).find(priceQueryMax).find(priceQueryMin).find(areaQueryMin).find(areaQueryMax).find(bathQueryMin).find(bathQueryMax).sort(sortQuery);
     res.status(200).json(property)
 
 

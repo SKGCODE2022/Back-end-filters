@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema
     {
 
         
-        username: 
+        name: 
         {
             type: String,
             required: [true, 'Please add a username']

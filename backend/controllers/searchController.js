@@ -57,14 +57,23 @@ const getSearch = asyncHandler(async (req, res) =>
  {
      bathQueryMin = {baths: {$gte: req.query.bathsMin}}
  }  
- else {bathQueryMin = null}     
+ else {bathQueryMin = null}  
+ 
+//   //purpose filters
+//   if(req.query.purpose)
+//   { 
+//       purposeQuery = {puprose: req.query.purpose}
+//   }
+//   else {purposeQuery = null}
+ 
+  
 
-
+//sort
 if(req.query.sort == "price-asc")
     {
         sortQuery = {price: 1}
     }
-    else if(req.query.sort == "price-des")
+    else if(req.query.sort == "price-desc")
     {
         sortQuery = {price: -1}
     }

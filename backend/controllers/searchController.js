@@ -22,13 +22,13 @@ const getSearch = asyncHandler(async (req, res) =>
 //room filters
     if(req.query.roomsMax)
     { 
-        roomQueryMax = {room: {$lte: req.query.roomsMax}}
+        roomQueryMax = {rooms: {$lte: req.query.roomsMax}}
     }
     else {roomQueryMax = null}
 
     if(req.query.roomsMin)
     {
-        roomQueryMin = {room: {$gte: req.query.roomsMin}}
+        roomQueryMin = {rooms: {$gte: req.query.roomsMin}}
     }  
     else {roomQueryMin = null}   
 

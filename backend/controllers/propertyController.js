@@ -45,6 +45,13 @@ const setProperty = asyncHandler(async (req, res) =>
         energyClass: req.body.energyClass,
         description: req.body.description,
         title: req.body.title,
+        photo2: req.body.photo2,
+        photo3: req.body.photo3,
+        photo4: req.body.photo4,
+        agency: req.body.agency,
+        telNumber: req.body.telNumber,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
         
     })
     res.status(200).json(property)

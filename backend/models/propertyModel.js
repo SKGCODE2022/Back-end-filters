@@ -99,6 +99,47 @@ const propertiesSchema = mongoose.Schema
             type: String,
             required: [false, 'Please add a photo url)']
         },
+        photo1:
+        {
+            type: String,
+            required: [false, 'Please add a photo url)']
+        },
+        photo2:
+        {
+            type: String,
+            required: [false, 'Please add a photo url)']
+        },
+        photo3:
+        {
+            type: String,
+            required: [false, 'Please add a photo url)']
+        },
+        photo4:
+        {
+            type: String,
+            required: [false, 'Please add a photo url)']
+        },
+        agency: 
+        {
+            type: String,
+            required: [false, 'Please add an agency)']
+        },
+        telNumber: 
+        {
+            type: Number,
+            required: [false, 'Please add an telephone number)']
+        },
+        latitude:        
+        {
+            type: Number,
+            required: [false, 'Please add an latitude)']
+        },
+
+        longitude:
+        {
+            type: Number,
+            required: [false, 'Please add an longitude)']
+        },
 
     },
     {

@@ -52,6 +52,7 @@ const setProperty = asyncHandler(async (req, res) =>
         telNumber: req.body.telNumber,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
+        agencyUrl: req.body.agencyUrl,
         
     })
     res.status(200).json(property)

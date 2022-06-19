@@ -140,7 +140,12 @@ const propertiesSchema = mongoose.Schema
             type: Number,
             required: [false, 'Please add an longitude)']
         },
-
+        agencyUrl:
+        {
+            type: String,
+            required: [false, 'Please add an agency Url)']
+        },
+        
     },
     {
         timestamps: true,

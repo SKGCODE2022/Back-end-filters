@@ -112,9 +112,14 @@ if(req.query.sort == "price-asc")
         sortQuery = {updatedAt: -1}
     }
     else if(!req.query.sort){sortQuery = null}
+
+    // if(req.query.hitsPerPage == 6)
+    //     {
+    //         limitQuery = query.limit(number)
+    //     }
         
 
-    const property =await Property.find(req.query).find(roomQueryMin).find(roomQueryMax).find(levelQueryMin).find(levelQueryMax).find(yearQueryMin).find(yearQueryMax).find(priceQueryMax).find(priceQueryMin).find(areaQueryMin).find(areaQueryMax).find(bathQueryMin).find(bathQueryMax).sort(sortQuery);
+    const property =await Property.find(req.query).find(roomQueryMin).find(roomQueryMax).find(levelQueryMin).find(levelQueryMax).find(yearQueryMin).find(yearQueryMax).find(priceQueryMax).find(priceQueryMin).find(areaQueryMin).find(areaQueryMax).find(bathQueryMin).find(bathQueryMax).sort(sortQuery).limit(req.query.limit);
     res.status(200).json(property)
 
 

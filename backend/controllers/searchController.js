@@ -85,12 +85,43 @@ const getSearch = asyncHandler(async (req, res) =>
   }  
   else {levelQueryMin = null}
  
-//   //purpose filters
-//   if(req.query.purpose)
-//   { 
-//       purposeQuery = {puprose: req.query.purpose}
-//   }
-//   else {purposeQuery = null}
+  //agency filters
+  if(req.query.agency == "all")
+    {
+        agencyQuery = {agency: ['Picket Fence Realty', 'Stellar Property Advisors', 'Anchor Group Real Estate', 'Olive Tree Realty', 'Equinox Realty Advisors', 'Bold Realty']}
+    }
+  else if (req.query.agency){ 
+      agencyQuery = {agency: req.query.agency}
+  }
+  else { 
+    agencyQuery = null
+}
+
+//location query
+if(req.query.locationExternalIDs == "all")
+{
+    locationExternalIDsQuery = {locationExternalIDs: ['athens', 'thessaloniki', 'heraklion']}
+}
+else if (req.query.locationExternalIDs){ 
+    locationExternalIDsQuery = {locationExternalIDs: req.query.locationExternalIDs}
+}
+else { 
+    locationExternalIDsQuery = null
+}
+
+
+//purpose query
+if(req.query.purpose == "all")
+{
+    purposeQuery = {purpose: ['for-rent', 'for-sale']}
+}
+else if (req.query.purpose){ 
+    purposeQuery = {purpose: req.query.purpose}
+}
+else { 
+    purposeQuery = null
+}
+
  
   
 
@@ -119,7 +150,7 @@ if(req.query.sort == "price-asc")
     //     }
         
 
-    const property =await Property.find(req.query).find(roomQueryMin).find(roomQueryMax).find(levelQueryMin).find(levelQueryMax).find(yearQueryMin).find(yearQueryMax).find(priceQueryMax).find(priceQueryMin).find(areaQueryMin).find(areaQueryMax).find(bathQueryMin).find(bathQueryMax).sort(sortQuery).limit(req.query.limit);
+    const property =await Property.find(req.query).find(purposeQuery).find(agencyQuery).find(locationExternalIDsQuery).find(roomQueryMin).find(roomQueryMax).find(levelQueryMin).find(levelQueryMax).find(yearQueryMin).find(yearQueryMax).find(priceQueryMax).find(priceQueryMin).find(areaQueryMin).find(areaQueryMax).find(bathQueryMin).find(bathQueryMax).sort(sortQuery).limit(req.query.limit);
     res.status(200).json(property)
 
 
